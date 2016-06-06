@@ -1,0 +1,96 @@
+// ==UserScript==
+// @name         jkForum
+// @namespace    diywork.info
+// @version      0.1
+// @description  jkForumOnly
+// @author       You
+// @match        http://www.jkforum.net/forum.php
+// @grant        none
+// ==/UserScript==
+
+var icon = {
+	//Icons made by Freepik from Flaticon is licensed by Creative Commons BY 3.0 
+	//http://www.flaticon.com/free-icon/expand-button_61728
+	expandButton :  "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjMycHgiIGhlaWdodD0iMzJweCIgdmlld0JveD0iMCAwIDI1OC4wMDggMjU4LjAwOCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjU4LjAwOCAyNTguMDA4OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTEyNS42MDksMTIyLjM1SDEwLjA0OUM0LjUsMTIyLjM1LDAsMTI2Ljg1LDAsMTMyLjM5OXYxMTUuNTZjMCw1LjU0OSw0LjUsMTAuMDQ4LDEwLjA0OSwxMC4wNDhIMTI1LjYxICAgIGM1LjU0OCwwLDEwLjA0Ni00LjQ5OSwxMC4wNDYtMTAuMDQ4di0xMTUuNTZDMTM1LjY1NiwxMjYuODUsMTMxLjE1OCwxMjIuMzUsMTI1LjYwOSwxMjIuMzV6IE0xMTUuNTU5LDIzNy45MDlIMjAuMDk4di05NS40NjMgICAgaDk1LjQ2MVYyMzcuOTA5eiIgZmlsbD0iIzAwMDAwMCIvPgoJCTxwYXRoIGQ9Ik0yNDcuOTU4LDAuMDAxSDEwLjA0OUM0LjUsMC4wMDEsMCw0LjUsMCwxMC4wNDl2OTMuMzEyYzAsNS41NSw0LjUsMTAuMDUsMTAuMDQ5LDEwLjA1YzUuNTUsMCwxMC4wNDktNC41LDEwLjA0OS0xMC4wNSAgICBWMjAuMDk4aDIxNy44MTJ2MjE3LjgxMmgtODIuOTE1Yy01LjU1LDAtMTAuMDUsNC41LTEwLjA1LDEwLjA1YzAsNS41NDksNC41LDEwLjA0OCwxMC4wNSwxMC4wNDhoOTIuOTY0ICAgIGM1LjU1LDAsMTAuMDUtNC40OTksMTAuMDUtMTAuMDQ4VjEwLjA0OUMyNTguMDA4LDQuNSwyNTMuNTA4LDAuMDAxLDI0Ny45NTgsMC4wMDF6IiBmaWxsPSIjMDAwMDAwIi8+CgkJPHBhdGggZD0iTTE1NC4zNSwxMDYuODc2YzEuOTY1LDEuOTYxLDQuNTM0LDIuOTQyLDcuMTA1LDIuOTQyYzIuNTcsMCw1LjE0Mi0wLjk4MSw3LjEwNC0yLjk0MmwzMS43NTUtMzEuNzU3Vjg5LjU3ICAgIGMwLDUuNTQ5LDQuNDk5LDEwLjA0NywxMC4wNSwxMC4wNDdjNS41NDksMCwxMC4wNDgtNC40OTgsMTAuMDQ4LTEwLjA0N1Y1My4wNTRjMC0wLjM2NS0wLjA2OC0wLjcxMy0wLjEwNy0xLjA2OCAgICBjMC4zMjktMi45MzMtMC41ODgtNS45NzktMi44MzctOC4yMjljLTIuMTQ2LTIuMTQ4LTUuMDIzLTMuMDc5LTcuODMxLTIuODczYy0wLjIzMy0wLjAxNy0wLjQ2MS0wLjA3Mi0wLjY5Ni0wLjA3MmgtMzYuNTEzICAgIGMtNS41NTEsMC0xMC4wNTEsNC41LTEwLjA1MSwxMC4wNWMwLDUuNTQ5LDQuNSwxMC4wNDksMTAuMDUxLDEwLjA0OWgxMy42NzlMMTU0LjM1LDkyLjY2NSAgICBDMTUwLjQyNiw5Ni41ODksMTUwLjQyNiwxMDIuOTUyLDE1NC4zNSwxMDYuODc2eiIgZmlsbD0iIzAwMDAwMCIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo="
+};
+
+var afun= {
+	resize : function(obj ,hideSelect){
+		//debugger;
+		var $=jQuery.noConflict(); 
+
+		//father
+		var $obj = $(obj);
+
+		//改變定位
+		$obj.css('position' , 'relative');
+
+		//產生icon
+		var $expandButton = $('<div Fsize=""></div>');
+
+		//定義icon
+		$expandButton
+			.css('position' , 'absolute')
+			.css('width' , '40px').css('height' , '40px').css('margin','10px')
+			.css('zIndex',3)
+			.css('background-image' , 'url(' + icon.expandButton + ')') 
+			.css('background-repeat','no-repeat')
+			.css('background-size','contain')
+			.css('background-color','white')
+			.click( 
+			function() {
+				var $this = $(this);
+				var fSize = $this.attr("Fsize");
+				var objSize = $obj.height();
+				var hideObj = $obj.find(hideSelect);
+
+				$this.hide();
+
+				$obj.clearQueue();
+				
+				//console.log($obj.find("div.yb_citybot"));
+				if ( (typeof hideSelect !== "undefined")  ) {
+					if (hideObj.length >= 1){
+						hideObj.toggle(fSize==objSize?false:true );
+					}
+				}
+				
+				$obj.animate( { height : (fSize==objSize?"100":fSize) + "px" } , 
+							2000 , 
+							function(){
+								//改變icon位置
+								$this
+									//.css('top', '-' + ($this.height()/2) + 'px' )
+									//.css('left', ($obj.width() - ($this.width()/2)) + 'px'  )
+									.css('top', '0px' )
+									.css('left', ($obj.width() - $this.width()) + 'px'  )
+									.show();
+							}
+				);
+			})
+			.attr("Fsize",obj.height());
+
+		//加上icon
+		$obj.append($expandButton) ; 
+
+		//觸發icon
+		$expandButton.click();
+	} ,
+	ttt : function(){}
+};
+
+
+(function($) {
+	console.log("jkForum's Jquery Version is " + jQuery.fn.jquery);
+	if (typeof jQuery === 'undefined') {  
+		alert("this no Jquery");
+		return;
+	}
+	// 整理畫面, 把不必要的畫面縮小
+	//var $yb_conone = $("div .yb_conone");
+	afun.resize($("div .yb_conone"),".yb_conone_l , .yb_conone_c , .yb_conone_r");
+	afun.resize($("div .yb_discount"),".bd");
+	afun.resize($("div .yb_city"),".yb_citybot");
+
+
+})(jQuery);
