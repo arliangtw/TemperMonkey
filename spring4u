@@ -1,0 +1,23 @@
+// ==UserScript==
+// @name         spring4u
+// @namespace    diywork.info
+// @version      0.1
+// @description  spring4u
+// @author       You
+// @match        http://spring4u.info/*
+// @grant        none
+// @require http://code.jquery.com/jquery-latest.js
+// ==/UserScript==
+
+(function($) {
+	console.log("jkForum's Jquery Version is " + jQuery.fn.jquery);
+	if (typeof jQuery === 'undefined') {  
+		alert("this no Jquery");
+		return;
+	}
+    // 字放大
+    $('table').css('font','22px 細明體,宋体,Tahoma,Verdana');
+    $('.smalltxt').css('font','20px Arial,Tahoma');
+    $('div.maintable').find('table').find('td:last').find('span:last').css('font-size','32px');
+        //.css('border','solid red 1px');
+})(jQuery);
