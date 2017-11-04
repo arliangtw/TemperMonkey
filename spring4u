@@ -18,6 +18,7 @@
     // 字放大
     $('table').css('font','22px 細明體,宋体,Tahoma,Verdana');
     $('.smalltxt').css('font','20px Arial,Tahoma');
+	// 整理畫面, 把不必要的畫面縮小
     $('div.maintable').find('table').find('td:last').find('span:last').css('font-size','32px');
         //.css('border','solid red 1px');
 })(jQuery);
