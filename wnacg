@@ -1,0 +1,37 @@
+// ==UserScript==
+// @name         wnacg
+// @namespace    diywork.info
+// @version      0.1
+// @description  wnacg
+// @author       You
+// @match        http://www.wnacg.com/*
+// @match        http://www.wnacg.org/*
+// @match        http://www.wnacg.inf/*
+// @grant        none
+// @require http://code.jquery.com/jquery-latest.js
+// ==/UserScript==
+
+
+(function($) {
+	console.log("jkForum's Jquery Version is " + jQuery.fn.jquery);
+	if (typeof jQuery === 'undefined') {  
+		alert("this no Jquery");
+		return;
+	}
+    //畫面變寬，容下更多元素
+    $('#bodywrap,.cc').css('max-width',$(window).width()-100+'px');
+    //alert($('#bodywrap').css('max-width'));
+    //說明區的文字可以折行
+    $('.gallary_item>.info>.title').css('white-space','normal');
+    //說明區的文字有足夠顯示空間
+    $('.gallary_wrap li.li').css('height', '450px');
+    //示範圖片放寬
+    $(".pic_box>a>img").css({'height':'360px','width':'270px'});
+    //重製閱覽區的圖片位置
+    var pothBody = $('#photo_body');
+    if (pothBody.length == 1  && pothBody.hasClass('photo_body')) {
+        pothBody[0].scrollIntoView();
+    }
+    // 字放大
+    //$('.grid .info .title').css('font','22px 細明體,宋体,Tahoma,Verdana');
+})(jQuery);
