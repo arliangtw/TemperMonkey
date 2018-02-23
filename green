@@ -1,0 +1,21 @@
+// ==UserScript==
+// @name         Green
+// @namespace    diywork.info
+// @version      0.1
+// @description  Green
+// @author       You
+// @match        http://greenhornfinancefootnote.blogspot.tw/*
+// @grant        none
+// @require http://code.jquery.com/jquery-latest.js
+// ==/UserScript==
+
+
+(function($) {
+	console.log("jkForum's Jquery Version is " + jQuery.fn.jquery);
+	if (typeof jQuery === 'undefined') {
+		alert("this no Jquery");
+		return;
+	}
+    //去除無意義的防cp
+    $('body').attr("onContextmenu","").attr("onDragstart","").attr("onSelectstart","");
+})(jQuery);
